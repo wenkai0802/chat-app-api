@@ -23,7 +23,11 @@ app.use(
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
+    cookie: {
+      secure: false,
+      sameSite: "none",
+      maxAge: 365 * 24 * 60 * 60 * 1000,
+    },
   })
 );
 app.use(passport.initialize());
@@ -61,5 +65,6 @@ passport.use(
 );
 app.use("/user", userRouter);
 app.use("/conversation", ConversationRouter);
+
 export default app;
 export { passport };
