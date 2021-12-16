@@ -8,7 +8,7 @@ const server = http.createServer(app);
 import { Server } from "socket.io";
 const io = new Server(server, {
   cors: {
-    origin: "https://wetalk-chat.netlify.app/",
+    origin: "https://wetalk-chat.netlify.app",
     credentials: true,
   },
 });
