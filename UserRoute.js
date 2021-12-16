@@ -3,9 +3,10 @@ import UserController from "./Controller/UserController.js";
 import { passport } from "./server.js";
 const userRouter = express.Router();
 userRouter.get("/", (req, res) => {
-  const { userID, name, contact } = req.user;
-
-  res.json({ userID, name, contact });
+  if (req.user) {
+    const { userID, name, contact } = req.user;
+    res.json({ userID, name, contact });
+  } else res.json({ status: "user not login" });
 });
 userRouter.get("/logout", (req, res) => {
   req.logout();
